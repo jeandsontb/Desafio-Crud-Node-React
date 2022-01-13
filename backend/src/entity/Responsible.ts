@@ -1,11 +1,11 @@
 import {
   Entity,
   PrimaryGeneratedColumn,
-  JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
   Column,
   ManyToOne,
+  JoinColumn,
 } from "typeorm";
 
 import { Company } from "./Company";
@@ -22,11 +22,18 @@ export class Responsible {
   @Column()
   address: string;
 
-  @ManyToOne(() => Company, (responsibles) => Responsible)
-  @JoinColumn()
+  @Column()
+  companyIdRes: string;
+
+  @Column()
+  localIdRes: string;
+
+  @ManyToOne(() => Company)
+  @JoinColumn({ name: "companyIdRes" })
   company: Company;
 
-  @ManyToOne(() => Local, (responsibles) => Responsible)
+  @ManyToOne(() => Local)
+  @JoinColumn({ name: "localIdRes" })
   local: Local;
 
   @CreateDateColumn()

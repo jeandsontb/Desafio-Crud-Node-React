@@ -3,14 +3,12 @@ import {
   PrimaryGeneratedColumn,
   JoinColumn,
   CreateDateColumn,
-  OneToMany,
   UpdateDateColumn,
   Column,
   ManyToOne,
 } from "typeorm";
 
 import { Company } from "./Company";
-import { Responsible } from "./Responsible";
 
 @Entity()
 export class Local {
@@ -23,13 +21,12 @@ export class Local {
   @Column()
   address: string;
 
-  @ManyToOne(() => Company, (locals) => Local)
-  @JoinColumn()
-  company: Company;
+  @Column()
+  companyIdLoc: string;
 
-  @OneToMany(() => Responsible, (local) => Local)
-  @JoinColumn()
-  responsibles: Responsible[];
+  @ManyToOne(() => Company)
+  @JoinColumn({ name: "companyIdLoc" })
+  company: Company;
 
   @CreateDateColumn()
   createdAt: Date;

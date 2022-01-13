@@ -4,13 +4,10 @@ import {
   JoinColumn,
   CreateDateColumn,
   ManyToOne,
-  OneToMany,
   UpdateDateColumn,
   Column,
 } from "typeorm";
 
-import { Local } from "./Local";
-import { Responsible } from "./Responsible";
 import { User } from "./User";
 
 @Entity()
@@ -33,14 +30,6 @@ export class Company {
   @ManyToOne(() => User)
   @JoinColumn({ name: "userId" })
   user: User;
-
-  @OneToMany(() => Local, (company) => Company)
-  @JoinColumn()
-  locals: Local[];
-
-  @OneToMany(() => Responsible, (company) => Company)
-  @JoinColumn()
-  responsibles: Responsible[];
 
   @CreateDateColumn()
   createdAt: Date;
