@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 
-import DeleteCompanyInLocalService from "../services/deleteLocal.service";
+import DeleteLocalService from "../services/deleteLocal.service";
 
-export class DeleteCompanyController {
+export class DeleteLocalController {
   async handle(req: Request, res: Response) {
     const { id } = req.params;
 
-    const localService = new DeleteCompanyInLocalService();
+    const localService = new DeleteLocalService();
 
     const local = await localService.delete(id);
 

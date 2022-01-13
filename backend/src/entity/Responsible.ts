@@ -22,10 +22,10 @@ export class Responsible {
   @Column()
   address: string;
 
-  @Column()
+  @Column({ nullable: true })
   companyId: string;
 
-  @Column()
+  @Column({ nullable: true })
   localId: string;
 
   @ManyToOne(() => Company)

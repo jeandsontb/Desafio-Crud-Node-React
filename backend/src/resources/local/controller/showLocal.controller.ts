@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 
 import ShowLocalService from "../services/showLocal.service";
 
-export class ShowOneCompanyController {
+export class ShowLocalController {
   async handle(req: Request, res: Response) {
     const { id } = req.params;
 

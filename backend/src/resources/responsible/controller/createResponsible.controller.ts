@@ -2,12 +2,12 @@ import { Request, Response } from "express";
 import * as Yup from "yup";
 
 import AppError from "../../../shared/error/AppError";
-import CreateCompanyInLocalService from "../services/createLocal.service";
+import CreateResponsibleService from "../services/createResponsible.service";
 
-export class CreateLocalController {
+export class CreateResponsibleController {
   async handle(req: Request, res: Response) {
     const { name, address } = req.body;
-    const { companyId } = req.query;
+    const { companyId, localId } = req.query;
 
     const schema = Yup.object().shape({
       name: Yup.string().required(),
@@ -18,12 +18,13 @@ export class CreateLocalController {
       throw new AppError("Os campos são obrigatórios", 400);
     }
 
-    const localService = new CreateCompanyInLocalService();
+    const responsibleService = new CreateResponsibleService();
 
-    const local = await localService.create({
+    const local = await responsibleService.create({
       name,
       address,
       companyId,
+      localId,
     });
 
     return res.status(201).json(local);

@@ -1,11 +1,11 @@
 import { getRepository } from "typeorm";
 
-import { Company } from "../../../entity/Company";
+import { Local } from "../../../entity/Local";
 import AppError from "../../../shared/error/AppError";
 
 export default class ShowLocalService {
   async show(id: string) {
-    const localRepository = getRepository(Company);
+    const localRepository = getRepository(Local);
 
     const local = await localRepository.find({ where: { companyId: id } });
 

@@ -8,22 +8,22 @@ export default class CreateCompanyInLocalService {
   async create({ name, address, companyId }: ILocalData) {
     const localRepository = getRepository(Local);
 
-    const companyInLocalExists = await localRepository.findOne({
-      where: { address },
+    const localExists = await localRepository.findOne({
+      where: { companyId },
     });
 
-    if (companyInLocalExists) {
+    if (localExists) {
       throw new AppError("Empresa já foi cadastrada nesse local", 401);
     }
 
-    const companyInLocal = localRepository.create({
+    const local = localRepository.create({
       name,
       address,
       companyId,
     });
 
-    await localRepository.save(companyInLocal);
+    await localRepository.save(local);
 
-    return companyInLocal;
+    return local;
   }
 }

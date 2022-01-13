@@ -21,7 +21,7 @@ export class Local {
   @Column()
   address: string;
 
-  @Column()
+  @Column({ nullable: true })
   companyId: string;
 
   @ManyToOne(() => Company)
