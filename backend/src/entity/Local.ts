@@ -22,10 +22,10 @@ export class Local {
   address: string;
 
   @Column()
-  companyIdLoc: string;
+  companyId: string;
 
   @ManyToOne(() => Company)
-  @JoinColumn({ name: "companyIdLoc" })
+  @JoinColumn({ name: "companyId" })
   company: Company;
 
   @CreateDateColumn()

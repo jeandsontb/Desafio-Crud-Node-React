@@ -23,17 +23,17 @@ export class Responsible {
   address: string;
 
   @Column()
-  companyIdRes: string;
+  companyId: string;
 
   @Column()
-  localIdRes: string;
+  localId: string;
 
   @ManyToOne(() => Company)
-  @JoinColumn({ name: "companyIdRes" })
+  @JoinColumn({ name: "companyId" })
   company: Company;
 
   @ManyToOne(() => Local)
-  @JoinColumn({ name: "localIdRes" })
+  @JoinColumn({ name: "localId" })
   local: Local;
 
   @CreateDateColumn()
