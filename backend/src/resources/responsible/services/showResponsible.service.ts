@@ -4,6 +4,7 @@ import { Responsible } from "../../../entity/Responsible";
 import AppError from "../../../shared/error/AppError";
 
 export default class ShowResponsibleService {
+  // eslint-disable-next-line consistent-return
   async show(idCompany = null, idlocal = null) {
     const localRepository = getRepository(Responsible);
 
@@ -15,6 +16,8 @@ export default class ShowResponsibleService {
       if (!companyResponse) {
         throw new AppError("Opss! Problema ao listar as empresas", 401);
       }
+
+      return companyResponse;
     }
 
     if (idlocal) {
@@ -25,8 +28,8 @@ export default class ShowResponsibleService {
       if (!localResponse) {
         throw new AppError("Opss! Problema ao listar as empresas", 401);
       }
-    }
 
-    return { message: "eu" };
+      return localResponse;
+    }
   }
 }
