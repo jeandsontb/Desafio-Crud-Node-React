@@ -1,23 +1,53 @@
 import styled from 'styled-components';
 
+interface IComponentsProps {
+  openForm: boolean;
+} 
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  Container: styled.section`
+  Container: styled.section<IComponentsProps>`
+    display: flex;
     position: fixed;
-    width: 35%;
+    justify-content: space-between;
+    width: ${({openForm}) => openForm ? 95 : 35}%;
     margin-left: 2.5%;
     margin-top: 20px;
     border-radius: 10px;
     background-color: ${({theme}) => theme.colors.background};
     padding: 20px 20px 10px 20px;
     overflow: hidden;
+    box-shadow: 0px 2px 4px ${({theme}) => theme.colors.primary};
+    transition: all ease 0.2s;
+  `,
+  BoxSeparator: styled.div<IComponentsProps>`
+    width: ${({openForm}) => openForm ? 35 : 100}%;
+  `,
+  BoxTitleCompanyButtonClose: styled.div<IComponentsProps>`
+    display: ${({openForm}) => openForm ? 'flex' : 'none'};
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  `,
+  ButtonClose: styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: ${({theme}) => theme.colors.primary};
+    font-family: ${({theme}) => theme.fonts.poppins};
+    font-size: 15px;
+    cursor: pointer;
+
+    span {
+      margin-right: 10px;
+    }
   `,
   TextTitle: styled.h1`
     font-family: ${({theme}) => theme.fonts.poppins};
     font-size: 20px;
     color: ${({theme}) => theme.colors.primary};
   `,
-  BoxInputs: styled.div`
+  BoxInputs: styled.div<IComponentsProps>`
     margin-top: 20px;
 
     p {
@@ -60,5 +90,11 @@ export default {
   `,
   InputContainerButton: styled.div`
     margin-top: 30px;
+  `,
+  BoxFormsDescriptionCompany: styled.div<IComponentsProps>`
+    display: ${({openForm}) => openForm ? 'flex' : 'none'};
+    width: 60%;
+    height: 300px;
+    overflow: hidden;
   `,
 }

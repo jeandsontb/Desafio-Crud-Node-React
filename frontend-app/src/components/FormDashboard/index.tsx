@@ -1,13 +1,14 @@
 import {useState} from 'react';
+import { FaWindowClose } from 'react-icons/fa';
 
 import useCompany from '../../hooks/useCompany';
 import Button from '../Button';
+import { FormLocal } from '../FormLocal';
 import Input from '../Input';
 import S from './styles';
 
 const FormDashboard = () => {
-
-  const { createCompany } = useCompany();
+  const { createCompany, openForm, openPanelEdit } = useCompany();
 
   const [ name, setName ] = useState('');
   const [ cnpj, setCnpj ] = useState('');
@@ -36,50 +37,66 @@ const FormDashboard = () => {
   }
 
   return (
-    <S.Container>
-      <S.TextTitle>Cadastro de Empresa</S.TextTitle>
+    <S.Container openForm={openForm} >      
 
-      <S.BoxInputs>
-        <S.InputContainer>
-          <S.TextLabel>Nome da Empresa</S.TextLabel>
-          <Input 
-              placeholder="EMPRESA" 
-              value={name} 
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-        </S.InputContainer>
-        <S.InputContainer>
-          <S.TextLabel>CNPJ da Empresa</S.TextLabel>
-          <Input 
-              placeholder="CNPJ" 
-              value={cnpj} 
-              onChange={(e) => setCnpj(e.target.value)}
-              required
-            />
-        </S.InputContainer>
-        <S.InputContainer>
-          <S.TextLabel>Descrição da Empresa</S.TextLabel>
-          <S.InputContainerText>
-            <S.InputTextArea
-              placeholder="DESCRIÇÂO"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            >
+      <S.BoxSeparator openForm={openForm}>
+        <S.TextTitle>Cadastro de Empresa</S.TextTitle>
 
-            </S.InputTextArea>
-          </S.InputContainerText>
-        </S.InputContainer>
+        <S.BoxTitleCompanyButtonClose openForm={openForm}>
+          <S.ButtonClose onClick={openPanelEdit}>
+            <span>Fechar</span> 
+            <FaWindowClose /> 
+          </S.ButtonClose>
+        </S.BoxTitleCompanyButtonClose>
 
-        {message && <p>{message}</p>}
+        <S.BoxInputs openForm={openForm} >
+          <S.InputContainer>
+            <S.TextLabel>Nome da Empresa</S.TextLabel>
+            <Input 
+                placeholder="EMPRESA" 
+                value={name} 
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+          </S.InputContainer>
+          <S.InputContainer>
+            <S.TextLabel>CNPJ da Empresa</S.TextLabel>
+            <Input 
+                placeholder="CNPJ" 
+                value={cnpj} 
+                onChange={(e) => setCnpj(e.target.value)}
+                required
+              />
+          </S.InputContainer>
+          <S.InputContainer>
+            <S.TextLabel>Descrição da Empresa</S.TextLabel>
+            <S.InputContainerText>
+              <S.InputTextArea
+                placeholder="DESCRIÇÂO"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              >
 
-        <S.InputContainerButton>
-          <Button type="button" onClick={handleSubmitCompany} >
-            Cadastrar Empresa
-          </Button>
-        </S.InputContainerButton>
-        
-      </S.BoxInputs>
+              </S.InputTextArea>
+            </S.InputContainerText>
+          </S.InputContainer>
+
+          {message && <p>{message}</p>}
+
+          <S.InputContainerButton>
+            <Button type="button" onClick={handleSubmitCompany} >
+              {openForm 
+                ? 'Atualizar Empresa'
+                : 'Cadastrar Empresa'
+              }
+            </Button>
+          </S.InputContainerButton>        
+        </S.BoxInputs>
+      </S.BoxSeparator>
+
+      <S.BoxFormsDescriptionCompany openForm={openForm} >
+        <FormLocal />
+      </S.BoxFormsDescriptionCompany>
     </S.Container>
   )
 }

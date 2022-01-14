@@ -12,7 +12,7 @@ import { FormDashboard } from '../../components/FormDashboard';
 
 const Dashboard = () => {
 
-  const { showAllCompanys, company } = useCompany();
+  const { showAllCompanys, company, editCompany } = useCompany();
 
     useEffect(() => {
       showAllCompanys();
@@ -24,7 +24,7 @@ const Dashboard = () => {
   }
 
   const handleEditCompany = (id: string) => {
-    console.log('edit '+id)
+    editCompany(id);
   }
 
   const handleTrashCompany = (id: string) => {
