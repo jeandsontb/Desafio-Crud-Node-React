@@ -1,26 +1,29 @@
-
 import { useNavigate } from 'react-router-dom';
 
 import useAuth from '../../hooks/useAuth';
 import { HeaderContainer, HeaderWrapper, UserInfo } from './styles';
-import logoInter from '../../assets/logo.png';
 import UserCircle from '../UserCicle';
+import { decoratorStorage } from '../../decorators';
 
 const Header = () => {
-
-  const navigate = useNavigate();
   const { user } = useAuth();
-  // const initials = user.firstName.substr(0, 1)+user.lastName.substr(0, 1).toUpperCase();
-  const initials = 'JT'
+  const navigate = useNavigate();
+
+  const initials = user.firstName.substring(0, 1)+user.lastName.substring(0, 1).toUpperCase();
 
   const handleLogoff = () => {
-    navigate('/');
+    localStorage.setItem(decoratorStorage.token, '');
+
+    const verifyToken = localStorage.getItem(decoratorStorage.token);
+    if(!verifyToken) {
+      navigate('/');
+      return;
+    }
   }
 
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        <img src={logoInter} alt="logo inter" width={172} height={61} />
 
         <UserInfo >
           <UserCircle initials={initials}/>

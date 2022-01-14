@@ -54,7 +54,7 @@ export const AuthProvider: React.FC = ({children}) => {
     const { data } = await userLogged();
 
     setUser(data);
-    localStorage.setItem(decoratorStorage.user, JSON.stringify(user));
+    localStorage.setItem(decoratorStorage.user, JSON.stringify(data));
     return data as IUserData;
   }
 

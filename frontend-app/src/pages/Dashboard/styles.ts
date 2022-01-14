@@ -2,11 +2,11 @@ import styled from "styled-components"
 
 export const DashboardBackground = styled.main`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: ${({theme}) => theme.colors.background2};
+  background-color: ${({theme}) => theme.colors.background};
 `;
 
 export const BodyContainer = styled.main`

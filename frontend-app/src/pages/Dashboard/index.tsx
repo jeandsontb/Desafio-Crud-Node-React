@@ -1,11 +1,12 @@
-import React from 'react';
+import { DashboardBackground } from './styles';
+import Header from '../../components/Header'
 
 const Dashboard = () => {
  
   return (
-    <div>
-      Dashboard
-    </div>
+    <DashboardBackground>
+      <Header />
+    </DashboardBackground>
   );
 }
 
