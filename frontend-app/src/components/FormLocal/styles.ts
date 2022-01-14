@@ -16,6 +16,9 @@ export default {
   BoxFormInput: styled.div`
     width: 80%;
   `,
+  BoxInputCep: styled.div`
+    display: flex;
+  `,
   TextLabel: styled.label`
     font-family: ${({theme}) => theme.fonts.poppins};
     color: ${({theme}) => theme.colors.secondary};
