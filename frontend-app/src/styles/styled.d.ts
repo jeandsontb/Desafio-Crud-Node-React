@@ -10,6 +10,8 @@ declare module 'styled-components' {
         background2: string;
         red: string;
         green: string;
+        gray: string;
+        grayLight: string;
     },
     fonts: {
       poppins: string;

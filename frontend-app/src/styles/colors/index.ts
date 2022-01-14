@@ -5,5 +5,7 @@ export const colors = {
   BACKGROUND: '#FFFFFF',
   BACKGROUND2: '#BFBB7E',
   BROW: '#73330E',
-  GREEN: '#15B138'
+  GREEN: '#15B138',
+  GRAY: '#F5F2F2',
+  GRAYLIGHT: '#F7F7F7'
 }

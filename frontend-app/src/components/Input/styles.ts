@@ -19,5 +19,7 @@ export const  InputContainer = styled.div`
     width: 100%;
     margin: 0 20px;
     outline: 0;
+    font-family: ${({theme}) => theme.fonts.poppins};
+    font-size: 16px;
   }
 `;

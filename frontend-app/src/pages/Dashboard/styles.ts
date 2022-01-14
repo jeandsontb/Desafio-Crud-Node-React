@@ -2,49 +2,22 @@ import styled from "styled-components"
 
 export const DashboardBackground = styled.main`
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 90px);
   display: flex;
   align-items: center;
   flex-direction: column;
   background-color: ${({theme}) => theme.colors.background};
 `;
-
-export const BodyContainer = styled.main`
-  width: 80%;
-  margin-top: 40px;
-  display: flex;
-  justify-content: space-between;
-
-  > div {
-    flex: 1;
-
-    & > div {
-      margin-bottom: 20px;
-    }
-
-    &:nth-child(2) {
-      display: flex;
-      justify-content: flex-end;
-    }
-  }
-`;
-
-export const InLineTitle = styled.div`
+export const Content = styled.section`
   display: flex;
   width: 100%;
 `;
-
-export const InLineContainer = styled.div`
-  display: flex;
-  margin-top: 20px;
-  width: 100%;
-
-  div {
-    flex: 4;
-    margin-right: 20px;
-  }
-
-  button {
-    flex: 1;
-  }
+export const BoxLeft = styled.div`
+  height: calc(100vh - 90px);
+  width: 40%;
+  background-color: ${({theme}) => theme.colors.secondary};
+`;
+export const BoxRight = styled.div`
+  width: 60%;
+  height: auto;
 `;

@@ -9,7 +9,8 @@ export const CircleContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 20px;
+  font-family: ${({theme}) => theme.fonts.abrilFatface};
   color: ${({theme}) => theme.colors.background};
   font-weight: 300;
-  font-size: 2rem;
+  font-size: 2.1rem;
 `;

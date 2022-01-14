@@ -14,6 +14,7 @@ export const HeaderWrapper = styled.div`
   height: 90px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `;
 
 export const UserInfo = styled.div`
@@ -30,16 +31,29 @@ export const UserInfo = styled.div`
     padding: 8px 14px;
     border-radius: 6px;
   }
+`;
+
+export const BoxLogout = styled.div`
+  display: flex;
+  width: 100px;
+  height: 90px;
+  justify-content: center;
+  align-items: center;
 
   a {
     text-decoration: none;
     font-size: 18px;
     color: ${({theme}) => theme.colors.background};
+    font-family: ${({theme}) => theme.fonts.poppins};
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: all ease 0.2s;
+  }
 
-    :hover {
-      text-decoration: underline;
-    }
+  a:hover {
+    text-decoration: underline;
   }
 `;
 

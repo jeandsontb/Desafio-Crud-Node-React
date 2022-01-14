@@ -9,7 +9,9 @@ export const theme = {
     background: colors.BACKGROUND,
     background2: colors.BACKGROUND2,
     red: colors.BROW,
-    green: colors.GREEN
+    gray: colors.GRAY,
+    grayLight: colors.GRAYLIGHT,
+    green: colors.GREEN,
   },
   fonts: {
     poppins: fonts.poppins,

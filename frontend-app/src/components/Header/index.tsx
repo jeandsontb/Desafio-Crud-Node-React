@@ -1,9 +1,16 @@
 import { useNavigate } from 'react-router-dom';
+import { FiLogOut } from 'react-icons/fi';
 
 import useAuth from '../../hooks/useAuth';
-import { HeaderContainer, HeaderWrapper, UserInfo } from './styles';
 import UserCircle from '../UserCicle';
 import { decoratorStorage } from '../../decorators';
+
+import { 
+  HeaderContainer,
+  HeaderWrapper, 
+  UserInfo,
+  BoxLogout 
+} from './styles';
 
 const Header = () => {
   const { user } = useAuth();
@@ -31,15 +38,18 @@ const Header = () => {
             <p>
               Olá.
               {' '}  
-              <span className="primary-color font-bold">
-                {user.firstName} {user.lastName} 
+              <span>
+                {user.firstName.toUpperCase()} {user.lastName.toUpperCase()} 
               </span> 
-            </p>
-            {/* <strong>{user.accountNumber}-{user.accountDigit}</strong><br /> */}
-            {/* eslint-disable-next-line */}
-            <a href="#"  onClick={handleLogoff} >Sair</a>
+            </p>           
           </div>
         </UserInfo>
+        <BoxLogout>
+          {/*eslint-disable-next-line jsx-a11y/anchor-is-valid  */}
+          <a href=""  onClick={handleLogoff} >
+            Sair <FiLogOut size={20} color="#FFFFFF" style={{marginLeft: 10}} /> 
+          </a>
+        </BoxLogout>
       </HeaderWrapper>
     </HeaderContainer>
   )
