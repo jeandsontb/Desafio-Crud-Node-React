@@ -7,3 +7,9 @@ export interface IShowCompanyDataAll {
   createdAt: string,
   updatedAt: string
 };
+
+export interface ICompanyCreate {
+  name: string;
+	cnpj: string;
+	description: string;
+}

@@ -6,6 +6,8 @@ export const  ButtonContainer = styled.button`
   color: ${({theme}) => theme.colors.background};
   background: ${({theme}) => theme.colors.primary};
   border: 1px solid ${({theme}) => theme.colors.primary};
+  font-family: ${({theme}) => theme.fonts.poppins};
+  font-size: 16px;
   border-radius: 10px;
   margin-bottom: 20px;
   display: flex;

@@ -19,8 +19,6 @@ const Dashboard = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-  console.log(company);
-
   const handleDetailsCompany = (id: string) => {
     console.log('o id foi '+ id);
   }

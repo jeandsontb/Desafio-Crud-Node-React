@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 
-import { IShowCompanyDataAll } from '../dtos/company';
-import { showCompanys } from '../services/resources/company';
+import { ICompanyCreate, IShowCompanyDataAll } from '../dtos/company';
+import { createCompanyMain, showCompanys } from '../services/resources/company';
 
 // interface IContextData {
 //   user: IUserData;
@@ -13,6 +13,7 @@ import { showCompanys } from '../services/resources/company';
 interface ICompanyData {
   company: IShowCompanyDataAll[];
   showAllCompanys: () => void;
+  createCompany: (data: ICompanyCreate) => Promise<any>;
 }
 
 export const CompanyContext = createContext<ICompanyData>({} as ICompanyData);
@@ -29,8 +30,18 @@ export const CompanyProvider: React.FC = ({children}) => {
     return;
   }
 
+  const createCompany = async (obj: ICompanyCreate) => {
+    const { data } = await createCompanyMain(obj);
+
+    if(!data.id) {
+      return 'não foi possível salvar a empresa';
+    }
+    setCompany([...company, data]);
+    return 'success';
+  }
+
   return (
-    <CompanyContext.Provider value={{company, showAllCompanys}}>
+    <CompanyContext.Provider value={{company, showAllCompanys, createCompany}}>
       {children}
     </CompanyContext.Provider>
   )
