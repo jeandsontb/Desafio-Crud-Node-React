@@ -19,6 +19,7 @@ import {
   showCompanys,
   showLocalCompany,
   showOneCompanyMain,
+  showResponsibleCompany,
   updateCompanyMain, 
 } from '../services/resources/company';
 
@@ -152,8 +153,14 @@ export const CompanyProvider: React.FC = ({children}) => {
 
   //Função para deletar uma empresa e seus relacionamentos
   const deleteCompany = async (id: string) => {
-    await deleteResponsibleCompany(id);
-    await deleteLocalCompany(id);
+    const {data: responseResponsible} = await showResponsibleCompany(id);
+    if(responseResponsible.length > 0) {
+      await deleteResponsibleCompany(id);
+    }
+    const {data: responseLocal} = await showLocalCompany(id);
+    if(responseLocal.length > 0 ) {
+      await deleteLocalCompany(id);
+    }
     await deleteCompanyMain(id);
     showAllCompanys();
   }
