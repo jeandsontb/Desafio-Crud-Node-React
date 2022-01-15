@@ -6,6 +6,7 @@ import Dashboard from '../pages/Dashboard';
 import { decoratorStorage } from '../decorators';
 import { NotFound } from '../pages/NotFound';
 import { RequireAuth } from './RequireAuth';
+import { DetailsCompany } from '../pages/DetailsCompany';
 
 export const Router = () => {
 
@@ -18,6 +19,9 @@ export const Router = () => {
         <Route path="/signup" element={!token ? <SignUp /> : <Navigate to="/dashboard" />}/>
         <Route path="/dashboard" element={
           <RequireAuth ><Dashboard /></RequireAuth>
+        }/>
+        <Route path="/dashboard/details" element={
+          <RequireAuth ><DetailsCompany /></RequireAuth>
         }/>
         <Route path="*" element={<NotFound />}/>
       </Routes>

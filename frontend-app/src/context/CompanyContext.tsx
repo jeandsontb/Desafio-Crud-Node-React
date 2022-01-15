@@ -3,7 +3,10 @@ import { createContext, useState } from 'react';
 import { 
   ICompanyCreate, 
   ICompanyEdit, 
+  ICompanyShowOne, 
   ICompanyUpdate, 
+  ILocalList, 
+  IResponsibleList, 
   IShowCompanyDataAll 
 } from '../dtos/company';
 import { 
@@ -15,6 +18,7 @@ import {
   deleteResponsibleCompany, 
   showCompanys,
   showLocalCompany,
+  showOneCompanyMain,
   updateCompanyMain, 
 } from '../services/resources/company';
 
@@ -22,10 +26,12 @@ interface ICompanyData {
   company: IShowCompanyDataAll[];
   openForm: boolean;
   companyEdit: ICompanyEdit;
+  companySelected: ICompanyShowOne;
   showAllCompanys: () => void;
   createCompany: (data: ICompanyCreate) => Promise<any>;
   editCompany: (data?: ICompanyEdit) => Promise<any>;
   updateCompany: (data: ICompanyUpdate) => Promise<any>;
+  showOneCompany: (id: string) => void;
   deleteCompany: (id: string) => void;
   openPanelEdit: () => void;
 }
@@ -36,6 +42,7 @@ export const CompanyProvider: React.FC = ({children}) => {
   const [ company, setCompany ] = useState<IShowCompanyDataAll[]>([] as IShowCompanyDataAll[]);
   const [ openForm, setOpenForm ] = useState(false);
   const [ companyEdit, setConpanyEdit ] = useState<ICompanyEdit>({} as ICompanyEdit);
+  const [ companySelected, setCompanySelected ] = useState<ICompanyShowOne>({} as ICompanyShowOne);
 
   //função para listar todas as empresas cadastradas
   const showAllCompanys = async () => {
@@ -112,6 +119,37 @@ export const CompanyProvider: React.FC = ({children}) => {
     }
   }
 
+  const showOneCompany = async (id: string) => {
+    const { data } = await showOneCompanyMain(id);
+
+    let companyLocal: ILocalList[] = [];
+    data.companyLocal.map((res: { name: string; address: string; }) => {
+      const dataLocalOne = {
+        nameLocal: res.name,
+        addressLocal: res.address
+      }
+      companyLocal.push(dataLocalOne);
+    })
+
+    let companyResponsible: IResponsibleList[] = [];
+    data.companyResponsible.map((res: { name: string; address: string; }) => {      
+        const dataResponsibleOne = {
+          nameResponsible: res.name,
+          addressResponsible: res.address
+        }
+        companyResponsible.push(dataResponsibleOne);
+    });
+
+    const dataOneCompanySelected: ICompanyShowOne = {
+      name: data.companyData.name,
+      cnpj: data.companyData.cnpj,
+      description: data.companyData.description,
+      companyLocal,
+      companyResponsible
+    }
+    setCompanySelected(dataOneCompanySelected);
+  }
+
   //Função para deletar uma empresa e seus relacionamentos
   const deleteCompany = async (id: string) => {
     await deleteResponsibleCompany(id);
@@ -141,9 +179,11 @@ export const CompanyProvider: React.FC = ({children}) => {
       company, 
       openForm,
       companyEdit,
+      companySelected,
       showAllCompanys, 
       createCompany, 
       editCompany,
+      showOneCompany,
       deleteCompany,
       openPanelEdit,
       updateCompany

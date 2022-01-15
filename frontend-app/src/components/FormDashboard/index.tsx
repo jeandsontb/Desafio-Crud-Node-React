@@ -32,10 +32,15 @@ const FormDashboard = () => {
       setDescription(companyEdit.description);
       return;
     } 
+    if(openForm === false) {
       setName('');
       setCnpj('');
       setDescription('');
+      setLocalCompany('');
+      setNameResponsible('');
+      setAddressResponsible('');
       return;
+    }  
   }, [companyEdit, openForm])
 
   const setResponsibleCompany = (name: string, address: string) => {
@@ -55,6 +60,9 @@ const FormDashboard = () => {
         setName('');
         setCnpj('');
         setDescription('');
+        setLocalCompany('');
+        setNameResponsible('');
+        setAddressResponsible('');
         return;
       }
       setMessage(responseMessage)
@@ -75,7 +83,7 @@ const FormDashboard = () => {
       nameResponsible,
       addressResponsible,
     };
-    const response = await updateCompany(data);
+    await updateCompany(data);
   }
 
   return (

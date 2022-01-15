@@ -21,6 +21,11 @@ const deleteCompanyMain = async (id: string) => {
   return response;
 }
 
+const showOneCompanyMain = async (id: string) => {
+  const response = await api.get(`/company/showone/${id}`);
+  return response;
+}
+
 const createLocalCompany = async (data: ILocalCreate) => {
   const response = await api.post('/local/create', data);
   return response;
@@ -56,6 +61,7 @@ export {
   deleteCompanyMain,
   createLocalCompany, 
   updateCompanyMain,
+  showOneCompanyMain,
   showLocalCompany,
   deleteLocalCompany,
   createResponsibleLocalAndCompany,

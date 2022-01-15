@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { 
   DashboardBackground, 
   Content,
@@ -12,8 +14,15 @@ import { FormDashboard } from '../../components/FormDashboard';
 import { ICompanyEdit } from '../../dtos/company';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
 
-  const { showAllCompanys, company, editCompany, deleteCompany } = useCompany();
+  const { 
+    company, 
+    showAllCompanys, 
+    editCompany, 
+    deleteCompany, 
+    showOneCompany 
+  } = useCompany();
 
     useEffect(() => {
       showAllCompanys();
@@ -21,7 +30,8 @@ const Dashboard = () => {
     }, []);
 
   const handleDetailsCompany = (id: string) => {
-    console.log('o id foi '+ id);
+    showOneCompany(id);
+    navigate('details');
   }
 
   const handleEditCompany = (data: ICompanyEdit) => {
