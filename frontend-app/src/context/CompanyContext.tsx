@@ -9,8 +9,10 @@ import {
 import { 
   createCompanyMain, 
   createLocalCompany, 
+  createResponsibleLocalAndCompany, 
   showCompanys,
-  showLocalCompany, 
+  showLocalCompany,
+  updateCompanyMain, 
 } from '../services/resources/company';
 
 interface ICompanyData {
@@ -55,43 +57,56 @@ export const CompanyProvider: React.FC = ({children}) => {
   const updateCompany = async (dataUpdate: ICompanyUpdate) => {
     let idLocalCompanyData = '';
 
+    //verifica se há necesssidade de criar um local e também já adiciona o id para 
+    //ser enviado para os responsáveis.
     if(dataUpdate.localCompany) {
       const { data } = await showLocalCompany(dataUpdate.id);
-
-        if(data[0] !== undefined) {
-          idLocalCompanyData = data[0].id;
-        } else {
-          const localData = {
-            name: dataUpdate.name,
-            address: dataUpdate.localCompany,
-            companyId: dataUpdate.id
-          }
-          const responseLocal = await createLocalCompany(localData);
-          console.log(responseLocal.data.id)
-
+      if(data[0] !== undefined) {
+        idLocalCompanyData = data[0].id;
+      } else {
+        const localData = {
+          name: dataUpdate.name,
+          address: dataUpdate.localCompany,
+          companyId: dataUpdate.id
         }
-
-        // console.log(idLocalCompanyData);
-        // console.log(dataUpdate.id)
-      
-
-      
+        const responseLocal = await createLocalCompany(localData);
+        idLocalCompanyData = responseLocal.data.id;
+      }
     }
 
-    // if(dataUpdate.id) {
-    //   const tempCompany = [...company];
-    //   const newCompany = tempCompany.find((obj) => obj.id === dataUpdate.id);
-    //   if(newCompany) {
-    //     newCompany.name = dataUpdate.name;
-    //     newCompany.cnpj = dataUpdate.cnpj;
-    //     newCompany.description = dataUpdate.description;
-    //   }
-    //   setCompany(tempCompany);
-    //   openPanelEdit();
-    //   return 'success';
-    // }
+    //verifica se sem algum id do local, nome e endereço para inserir um novo responsável
+    if(idLocalCompanyData !== '' && 
+        dataUpdate.nameResponsible && 
+          dataUpdate.addressResponsible
+    ) {
+      const responsibleData = {
+        name: dataUpdate.nameResponsible,
+        address: dataUpdate.addressResponsible
+      }
+      const { data } = await createResponsibleLocalAndCompany(
+        dataUpdate.id, idLocalCompanyData, responsibleData
+      );
+      if(!data.id) {
+        return 'não foi possível salvar responsável';
+      }
+      return 'success';
+    }
+     
+    //depois de verificar tudo faz o update da empresa no banco e na lista
+    if(dataUpdate.id) {
+      const tempCompany = [...company];
+      const newCompany = tempCompany.find((obj) => obj.id === dataUpdate.id);
+      if(newCompany) {
+        newCompany.name = dataUpdate.name;
+        newCompany.cnpj = dataUpdate.cnpj;
+        newCompany.description = dataUpdate.description;
 
-    //falta a implementação para atualizar a empresa e ainda criar também o responsável
+        await updateCompanyMain(dataUpdate.id, newCompany);
+      }
+      setCompany(tempCompany);
+      openPanelEdit();
+      return 'success';
+    }
   }
 
   //Função para abrir o form com a empresa preenchida

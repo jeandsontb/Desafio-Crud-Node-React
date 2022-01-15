@@ -40,8 +40,6 @@ export interface ILocalCreate {
 }
 
 export interface IResponsibleCreate {
-  idCompany: string;
-  idLocal: string;
-  nameResponsible: string;
-  addressResponsible: string;
+  name: string;
+  address: string;
 }
