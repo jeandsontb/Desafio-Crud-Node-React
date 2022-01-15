@@ -9,7 +9,7 @@ export default class CreateCompanyInLocalService {
     const localRepository = getRepository(Local);
 
     const localExists = await localRepository.findOne({
-      where: { companyId },
+      where: { address },
     });
 
     if (localExists) {

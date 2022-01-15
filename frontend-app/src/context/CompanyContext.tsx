@@ -61,7 +61,10 @@ export const CompanyProvider: React.FC = ({children}) => {
     //ser enviado para os responsáveis.
     if(dataUpdate.localCompany) {
       const { data } = await showLocalCompany(dataUpdate.id);
-      if(data[0] !== undefined) {
+      let vefiryLocalCompany = data.find(
+        (local: { address: string | undefined; }) => local.address === dataUpdate.localCompany
+      );
+      if(vefiryLocalCompany !== undefined) {
         idLocalCompanyData = data[0].id;
       } else {
         const localData = {
@@ -83,13 +86,9 @@ export const CompanyProvider: React.FC = ({children}) => {
         name: dataUpdate.nameResponsible,
         address: dataUpdate.addressResponsible
       }
-      const { data } = await createResponsibleLocalAndCompany(
+      await createResponsibleLocalAndCompany(
         dataUpdate.id, idLocalCompanyData, responsibleData
       );
-      if(!data.id) {
-        return 'não foi possível salvar responsável';
-      }
-      return 'success';
     }
      
     //depois de verificar tudo faz o update da empresa no banco e na lista
