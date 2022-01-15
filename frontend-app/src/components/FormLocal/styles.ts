@@ -4,13 +4,11 @@ import styled from "styled-components";
 export default {
   Container: styled.div`
     width: 100%;
-    height: 200px;
   `,
   TextTitleLocal: styled.h1`
     font-family: ${({theme}) => theme.fonts.poppins};
     font-size: 20px;
     color: ${({theme}) => theme.colors.primary};
-    margin-top: 20px;
     margin-bottom: 10px;
   `,
   BoxFormInput: styled.div`

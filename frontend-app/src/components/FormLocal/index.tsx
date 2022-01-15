@@ -1,19 +1,26 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { searchCep } from '../../services/resources/cep'
 import Button from '../Button'
 import Input from '../Input'
 import S from './styles'
 
-const FormLocal = () => {
+interface ILocalAddress {
+  local: (local: string) => void;
+}
+
+const FormLocal = ({local}: ILocalAddress) => {
 
   const [ cepDigit, setCepDigit ] = useState('');
   const [ addressLocal, setAddressLocal ] = useState('');
 
+  useEffect(() => {
+    local(addressLocal);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [addressLocal]);
+
   const handleSearchCep = async () => {
-    setAddressLocal('');
-  
-    const { data } = await searchCep(cepDigit);  
-    console.log(Object.keys(data).length)     
+    setAddressLocal('');  
+    const { data } = await searchCep(cepDigit);   
     if(Object.keys(data).length > 1) {
       let cep = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
       setAddressLocal(cep);

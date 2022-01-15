@@ -94,7 +94,6 @@ export default {
   BoxFormsDescriptionCompany: styled.div<IComponentsProps>`
     display: ${({openForm}) => openForm ? 'flex' : 'none'};
     width: 60%;
-    height: 300px;
     overflow: hidden;
   `,
 }

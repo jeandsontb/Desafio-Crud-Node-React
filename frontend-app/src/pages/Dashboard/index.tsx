@@ -9,6 +9,7 @@ import { ListCompany } from '../../components/ListCompany';
 import { useEffect } from 'react';
 import useCompany from '../../hooks/useCompany';
 import { FormDashboard } from '../../components/FormDashboard';
+import { ICompanyEdit } from '../../dtos/company';
 
 const Dashboard = () => {
 
@@ -23,13 +24,15 @@ const Dashboard = () => {
     console.log('o id foi '+ id);
   }
 
-  const handleEditCompany = (id: string) => {
-    editCompany(id);
+  const handleEditCompany = (data: ICompanyEdit) => {
+    editCompany(data);
   }
 
   const handleTrashCompany = (id: string) => {
     console.log('lixeira '+ id)
   }
+
+  console.log(company)
  
   return (
     <DashboardBackground>
@@ -54,7 +57,7 @@ const Dashboard = () => {
                 verify={verify} 
                 data={item}
                 details={handleDetailsCompany} 
-                edit={handleEditCompany} 
+                edit={() => handleEditCompany(item)} 
                 trash={handleTrashCompany}  
               />
             );

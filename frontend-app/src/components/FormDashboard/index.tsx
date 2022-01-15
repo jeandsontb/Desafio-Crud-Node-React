@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import { FaWindowClose } from 'react-icons/fa';
 
 import useCompany from '../../hooks/useCompany';
@@ -8,12 +8,32 @@ import Input from '../Input';
 import S from './styles';
 
 const FormDashboard = () => {
-  const { createCompany, openForm, openPanelEdit } = useCompany();
+  const { 
+    openForm, 
+    companyEdit, 
+    createCompany, 
+    openPanelEdit,
+    updateCompany 
+  } = useCompany();
 
   const [ name, setName ] = useState('');
   const [ cnpj, setCnpj ] = useState('');
   const [ description, setDescription ] = useState('');
   const [ message, setMessage ] = useState('');
+  const [ localCompany, setLocalCompany ] = useState('');
+
+  useEffect(() => {
+    if(openForm) {
+      setName(companyEdit.name);
+      setCnpj(companyEdit.cnpj);
+      setDescription(companyEdit.description);
+      return;
+    } 
+      setName('');
+      setCnpj('');
+      setDescription('');
+      return;
+  }, [companyEdit, openForm])
 
   const handleSubmitCompany = async () => {
     if(name && cnpj && description) {
@@ -34,6 +54,18 @@ const FormDashboard = () => {
     }    
     setMessage('Opss! Todos os campos são obrigatórios');
     return;
+  }
+
+  const handleSubmitEditCompany = async () => {
+    const data = {
+      id: companyEdit.id,
+      userId: companyEdit.userId,
+      name,
+      cnpj,
+      description,
+      localCompany
+    };
+    await updateCompany(data);
   }
 
   return (
@@ -84,7 +116,9 @@ const FormDashboard = () => {
           {message && <p>{message}</p>}
 
           <S.InputContainerButton>
-            <Button type="button" onClick={handleSubmitCompany} >
+            <Button type="button" onClick={
+              openForm ? handleSubmitEditCompany : handleSubmitCompany
+            } >
               {openForm 
                 ? 'Atualizar Empresa'
                 : 'Cadastrar Empresa'
@@ -95,7 +129,7 @@ const FormDashboard = () => {
       </S.BoxSeparator>
 
       <S.BoxFormsDescriptionCompany openForm={openForm} >
-        <FormLocal />
+        <FormLocal local={setLocalCompany} />
       </S.BoxFormsDescriptionCompany>
     </S.Container>
   )
