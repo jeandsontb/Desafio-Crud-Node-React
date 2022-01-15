@@ -96,4 +96,9 @@ export default {
     width: 60%;
     overflow: hidden;
   `,
+  BoxFormsOptionsCompany: styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  `,
 }

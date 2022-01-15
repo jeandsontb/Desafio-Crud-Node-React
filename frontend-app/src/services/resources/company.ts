@@ -1,4 +1,4 @@
-import { ICompanyCreate, ILocalCreate } from "../../dtos/company";
+import { ICompanyCreate, ILocalCreate, IResponsibleCreate } from "../../dtos/company";
 import api from "../api";
 
 const showCompanys = async () => {
@@ -21,4 +21,25 @@ const createLocalCompany = async (data: ILocalCreate) => {
   return response;
 }
 
-export { showCompanys, createCompanyMain, createLocalCompany, updateCompanyMain }
+const showLocalCompany = async (id: string) => {
+  const response = await api.get(`/local/show/${id}`);
+  return response;
+}
+
+const createResponsibleLocalAndCompany = async (
+  idCompany: string, idLocal: string, data: IResponsibleCreate
+) => {
+  const response = await api.post(
+    `/responsible/create?companyId=${idCompany}&localId=${idLocal}`, data
+  );
+  return response;
+}
+
+export { 
+  showCompanys, 
+  createCompanyMain, 
+  createLocalCompany, 
+  updateCompanyMain,
+  showLocalCompany,
+  createResponsibleLocalAndCompany 
+}

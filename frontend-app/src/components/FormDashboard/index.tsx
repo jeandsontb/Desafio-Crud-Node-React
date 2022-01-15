@@ -4,6 +4,7 @@ import { FaWindowClose } from 'react-icons/fa';
 import useCompany from '../../hooks/useCompany';
 import Button from '../Button';
 import { FormLocal } from '../FormLocal';
+import { FormResponsible } from '../FormResponsible';
 import Input from '../Input';
 import S from './styles';
 
@@ -21,6 +22,8 @@ const FormDashboard = () => {
   const [ description, setDescription ] = useState('');
   const [ message, setMessage ] = useState('');
   const [ localCompany, setLocalCompany ] = useState('');
+  const [ nameResponsible, setNameResponsible ] = useState('');
+  const [ addressResponsible, setAddressResponsible ] = useState('');
 
   useEffect(() => {
     if(openForm) {
@@ -34,6 +37,11 @@ const FormDashboard = () => {
       setDescription('');
       return;
   }, [companyEdit, openForm])
+
+  const setResponsibleCompany = (name: string, address: string) => {
+    setNameResponsible(name);
+    setAddressResponsible(address);
+  }
 
   const handleSubmitCompany = async () => {
     if(name && cnpj && description) {
@@ -63,7 +71,9 @@ const FormDashboard = () => {
       name,
       cnpj,
       description,
-      localCompany
+      localCompany,
+      nameResponsible,
+      addressResponsible,
     };
     const response = await updateCompany(data);
   }
@@ -129,7 +139,11 @@ const FormDashboard = () => {
       </S.BoxSeparator>
 
       <S.BoxFormsDescriptionCompany openForm={openForm} >
-        <FormLocal local={setLocalCompany} />
+        <S.BoxFormsOptionsCompany>
+          <FormLocal local={setLocalCompany} />
+
+          <FormResponsible responsible={setResponsibleCompany} /> 
+        </S.BoxFormsOptionsCompany>
       </S.BoxFormsDescriptionCompany>
     </S.Container>
   )

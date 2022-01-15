@@ -17,6 +17,9 @@ export default {
   BoxInputCep: styled.div`
     display: flex;
   `,
+  BoxAdjustInput: styled.div`
+    margin-top: -10px;
+  `,
   TextLabel: styled.label`
     font-family: ${({theme}) => theme.fonts.poppins};
     color: ${({theme}) => theme.colors.secondary};

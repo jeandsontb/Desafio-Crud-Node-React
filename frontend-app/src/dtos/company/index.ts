@@ -29,10 +29,19 @@ export interface ICompanyUpdate {
   cnpj: string;
   description: string;
   localCompany?: string;
+  nameResponsible?: string;
+  addressResponsible?: string;
 }
 
 export interface ILocalCreate {
   name: string;
   address: string;
   companyId?: string;
+}
+
+export interface IResponsibleCreate {
+  idCompany: string;
+  idLocal: string;
+  nameResponsible: string;
+  addressResponsible: string;
 }

@@ -20,13 +20,16 @@ const FormLocal = ({local}: ILocalAddress) => {
 
   const handleSearchCep = async () => {
     setAddressLocal('');  
-    const { data } = await searchCep(cepDigit);   
-    if(Object.keys(data).length > 1) {
-      let cep = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
-      setAddressLocal(cep);
+    if(cepDigit) {
+      const { data } = await searchCep(cepDigit);   
+      if(Object.keys(data).length > 1) {
+        let cep = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
+        setAddressLocal(cep);
+        return;
+      }
+      setAddressLocal('Endereço não encontrado!');
       return;
     }
-    setAddressLocal('Endereço não encontrado!');
     return;
   } 
 
@@ -51,15 +54,18 @@ const FormLocal = ({local}: ILocalAddress) => {
           >
             Procurar
           </Button>
-        </S.BoxInputCep>       
-        <S.TextLabel>Endereço</S.TextLabel>
-        <Input 
-          placeholder="ENDEREÇO" 
-          type="text" 
-          value={addressLocal}
-          required
-          onChange={(e) => setAddressLocal(e.target.value)}
-        />        
+        </S.BoxInputCep>  
+        <S.BoxAdjustInput>   
+          <S.TextLabel>Endereço</S.TextLabel>
+          <Input 
+            placeholder="ENDEREÇO" 
+            type="text" 
+            value={addressLocal}
+            required
+            readOnly
+            onChange={(e) => setAddressLocal(e.target.value)}
+          />  
+        </S.BoxAdjustInput>        
       </S.BoxFormInput>
     </S.Container>
   )

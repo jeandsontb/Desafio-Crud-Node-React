@@ -9,7 +9,8 @@ import {
 import { 
   createCompanyMain, 
   createLocalCompany, 
-  showCompanys, 
+  showCompanys,
+  showLocalCompany, 
 } from '../services/resources/company';
 
 interface ICompanyData {
@@ -52,27 +53,43 @@ export const CompanyProvider: React.FC = ({children}) => {
 
   //Função para atualizar a Empresa e também gravar local e responsável
   const updateCompany = async (dataUpdate: ICompanyUpdate) => {
+    let idLocalCompanyData = '';
+
     if(dataUpdate.localCompany) {
-      const localData = {
-        name: dataUpdate.name,
-        address: dataUpdate.localCompany,
-        companyId: dataUpdate.id
-      }
-      await createLocalCompany(localData);
+      const { data } = await showLocalCompany(dataUpdate.id);
+
+        if(data[0] !== undefined) {
+          idLocalCompanyData = data[0].id;
+        } else {
+          const localData = {
+            name: dataUpdate.name,
+            address: dataUpdate.localCompany,
+            companyId: dataUpdate.id
+          }
+          const responseLocal = await createLocalCompany(localData);
+          console.log(responseLocal.data.id)
+
+        }
+
+        // console.log(idLocalCompanyData);
+        // console.log(dataUpdate.id)
+      
+
+      
     }
 
-    if(dataUpdate.id) {
-      const tempCompany = [...company];
-      const newCompany = tempCompany.find((obj) => obj.id === dataUpdate.id);
-      if(newCompany) {
-        newCompany.name = dataUpdate.name;
-        newCompany.cnpj = dataUpdate.cnpj;
-        newCompany.description = dataUpdate.description;
-      }
-      setCompany(tempCompany);
-      openPanelEdit();
-      return 'success';
-    }
+    // if(dataUpdate.id) {
+    //   const tempCompany = [...company];
+    //   const newCompany = tempCompany.find((obj) => obj.id === dataUpdate.id);
+    //   if(newCompany) {
+    //     newCompany.name = dataUpdate.name;
+    //     newCompany.cnpj = dataUpdate.cnpj;
+    //     newCompany.description = dataUpdate.description;
+    //   }
+    //   setCompany(tempCompany);
+    //   openPanelEdit();
+    //   return 'success';
+    // }
 
     //falta a implementação para atualizar a empresa e ainda criar também o responsável
   }
