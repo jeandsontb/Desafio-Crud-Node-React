@@ -7,8 +7,13 @@
 </p>
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="PROJECT" title="#PROJECT" src="" width="400px">
-  <img alt="PROJECT" title="#PROJECT" src="" width="400px">
+  <img alt="PROJECT" title="#PROJECT" src="https://raw.githubusercontent.com/jeandsontb/Desafio-Crud-Node-React/main/screens/hublocal02.png" width="400px">
+  <img alt="PROJECT" title="#PROJECT" src="https://raw.githubusercontent.com/jeandsontb/Desafio-Crud-Node-React/main/screens/hublocal03.png" width="400px">
+</p>
+
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
+  <img alt="PROJECT" title="#PROJECT" src="https://raw.githubusercontent.com/jeandsontb/Desafio-Crud-Node-React/main/screens/hublocal.png" width="400px">
+  <img alt="PROJECT" title="#PROJECT" src="https://raw.githubusercontent.com/jeandsontb/Desafio-Crud-Node-React/main/screens/hublocal1.png" width="400px">
 </p>
 
 ## 💻 Sobre o Projeto
