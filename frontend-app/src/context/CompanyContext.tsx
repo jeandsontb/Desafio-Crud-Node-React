@@ -10,6 +10,9 @@ import {
   createCompanyMain, 
   createLocalCompany, 
   createResponsibleLocalAndCompany, 
+  deleteCompanyMain, 
+  deleteLocalCompany, 
+  deleteResponsibleCompany, 
   showCompanys,
   showLocalCompany,
   updateCompanyMain, 
@@ -23,6 +26,7 @@ interface ICompanyData {
   createCompany: (data: ICompanyCreate) => Promise<any>;
   editCompany: (data?: ICompanyEdit) => Promise<any>;
   updateCompany: (data: ICompanyUpdate) => Promise<any>;
+  deleteCompany: (id: string) => void;
   openPanelEdit: () => void;
 }
 
@@ -108,6 +112,14 @@ export const CompanyProvider: React.FC = ({children}) => {
     }
   }
 
+  //Função para deletar uma empresa e seus relacionamentos
+  const deleteCompany = async (id: string) => {
+    await deleteResponsibleCompany(id);
+    await deleteLocalCompany(id);
+    await deleteCompanyMain(id);
+    showAllCompanys();
+  }
+
   //Função para abrir o form com a empresa preenchida
   const editCompany = async (data?: ICompanyEdit) => {
     if(data) {
@@ -132,6 +144,7 @@ export const CompanyProvider: React.FC = ({children}) => {
       showAllCompanys, 
       createCompany, 
       editCompany,
+      deleteCompany,
       openPanelEdit,
       updateCompany
     }}>

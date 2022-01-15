@@ -13,7 +13,7 @@ import { ICompanyEdit } from '../../dtos/company';
 
 const Dashboard = () => {
 
-  const { showAllCompanys, company, editCompany } = useCompany();
+  const { showAllCompanys, company, editCompany, deleteCompany } = useCompany();
 
     useEffect(() => {
       showAllCompanys();
@@ -29,10 +29,8 @@ const Dashboard = () => {
   }
 
   const handleTrashCompany = (id: string) => {
-    console.log('lixeira '+ id)
+    deleteCompany(id);
   }
-
-  console.log(company)
  
   return (
     <DashboardBackground>
