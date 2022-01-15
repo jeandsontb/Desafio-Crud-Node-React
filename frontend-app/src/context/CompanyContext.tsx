@@ -19,7 +19,7 @@ interface ICompanyData {
   showAllCompanys: () => void;
   createCompany: (data: ICompanyCreate) => Promise<any>;
   editCompany: (data?: ICompanyEdit) => Promise<any>;
-  updateCompany: (data: ICompanyUpdate) => void;
+  updateCompany: (data: ICompanyUpdate) => Promise<any>;
   openPanelEdit: () => void;
 }
 
@@ -61,7 +61,18 @@ export const CompanyProvider: React.FC = ({children}) => {
       await createLocalCompany(localData);
     }
 
-
+    if(dataUpdate.id) {
+      const tempCompany = [...company];
+      const newCompany = tempCompany.find((obj) => obj.id === dataUpdate.id);
+      if(newCompany) {
+        newCompany.name = dataUpdate.name;
+        newCompany.cnpj = dataUpdate.cnpj;
+        newCompany.description = dataUpdate.description;
+      }
+      setCompany(tempCompany);
+      openPanelEdit();
+      return 'success';
+    }
 
     //falta a implementação para atualizar a empresa e ainda criar também o responsável
   }

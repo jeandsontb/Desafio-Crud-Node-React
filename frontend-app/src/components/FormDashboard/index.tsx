@@ -65,7 +65,7 @@ const FormDashboard = () => {
       description,
       localCompany
     };
-    await updateCompany(data);
+    const response = await updateCompany(data);
   }
 
   return (

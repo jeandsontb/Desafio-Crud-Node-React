@@ -28,7 +28,7 @@ export interface ICompanyUpdate {
   name: string;
   cnpj: string;
   description: string;
-  localCompany: string;
+  localCompany?: string;
 }
 
 export interface ILocalCreate {
