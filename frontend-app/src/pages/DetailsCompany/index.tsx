@@ -30,8 +30,8 @@ const DetailsCompany = () => {
               } 
               return (
                 <S.BoxLocals colorDefined={verifyColor} key={index}>
-                  <S.TextNameLocal>sdfkljsdfsdfjslkf</S.TextNameLocal>
-                  <S.TextAddressLocal>rua adlkfjsfs f</S.TextAddressLocal>
+                  <S.TextNameLocal> {item.nameLocal} </S.TextNameLocal>
+                  <S.TextAddressLocal> {item.addressLocal} </S.TextAddressLocal>
                 </S.BoxLocals>
               )
             })}
@@ -46,8 +46,8 @@ const DetailsCompany = () => {
               }
               return (
                 <S.BoxResponsibles colorDefined={verifyColor} key={index} >
-                  <S.TextNameResponsible>sdklfjsdlfj lskdfs</S.TextNameResponsible>
-                  <S.TextAddressResponsible>ava asdf asdf a</S.TextAddressResponsible>
+                  <S.TextNameResponsible> {item.nameResponsible} </S.TextNameResponsible>
+                  <S.TextAddressResponsible> {item.addressResponsible} </S.TextAddressResponsible>
                 </S.BoxResponsibles>
               )
           })}
