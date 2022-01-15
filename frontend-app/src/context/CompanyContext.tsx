@@ -12,13 +12,6 @@ import {
   showCompanys, 
 } from '../services/resources/company';
 
-// interface IContextData {
-//   user: IUserData;
-//   userSignIn: (userData: IUserSigninData) => Promise<IUserData>;
-//   userSignUp: (userData: IUserSignupData) => Promise<IUserData>;
-//   getUserLogged: () => Promise<IUserData>;
-// }
-
 interface ICompanyData {
   company: IShowCompanyDataAll[];
   openForm: boolean;
@@ -36,7 +29,6 @@ export const CompanyProvider: React.FC = ({children}) => {
   const [ company, setCompany ] = useState<IShowCompanyDataAll[]>([] as IShowCompanyDataAll[]);
   const [ openForm, setOpenForm ] = useState(false);
   const [ companyEdit, setConpanyEdit ] = useState<ICompanyEdit>({} as ICompanyEdit);
-  const [ updateTotalCompany, setUpdateTotalCompany ] = useState<ICompanyUpdate>({} as ICompanyUpdate)
 
   //função para listar todas as empresas cadastradas
   const showAllCompanys = async () => {
@@ -68,6 +60,8 @@ export const CompanyProvider: React.FC = ({children}) => {
       }
       await createLocalCompany(localData);
     }
+
+
 
     //falta a implementação para atualizar a empresa e ainda criar também o responsável
   }

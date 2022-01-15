@@ -6,8 +6,7 @@ import CreateCompanyInLocalService from "../services/createLocal.service";
 
 export class CreateLocalController {
   async handle(req: Request, res: Response) {
-    const { name, address } = req.body;
-    const { companyId } = req.query;
+    const { name, address, companyId } = req.body;
 
     const schema = Yup.object().shape({
       name: Yup.string().required(),
