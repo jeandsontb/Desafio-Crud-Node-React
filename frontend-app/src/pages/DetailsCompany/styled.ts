@@ -16,7 +16,7 @@ export default {
     display: flex;    
     align-items: center;
     flex-direction: column;
-    background-color: ${({theme}) => theme.colors.grayLight};
+    background-color: ${({theme}) => theme.colors.grayLight};    
   `,
   BoxDetailsCompany: styled.div`
     display: flex;
@@ -27,6 +27,7 @@ export default {
     padding: 20px;
     box-shadow: 0px 0px 10px ${({theme}) => theme.colors.primary};
     margin-bottom: 50px;
+    position: relative;
   `,
   BoxDetailsDescription: styled.div`
     width: 100%;
@@ -47,6 +48,22 @@ export default {
     margin-top:10px;
     border-top: 2px solid ${({theme}) => theme.colors.gray};
     padding-top: 20px;
+  `,
+  BoxButtonBack: styled.div`
+    position: absolute;
+    right: 40px;
+    top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  `,
+  TextBack: styled.p`
+    font-family: ${({theme}) => theme.fonts.poppins};
+    color: ${({theme}) => theme.colors.primary};
+    font-size: 20px;
+    margin-right: 10px;
+    font-weight: 600;
   `,
   TextDescripton: styled.p`
     font-family: ${({theme}) => theme.fonts.poppins};

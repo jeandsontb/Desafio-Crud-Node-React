@@ -1,3 +1,7 @@
+import { RiArrowGoBackFill } from 'react-icons/ri';
+import { useTheme } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+
 import Header from '../../components/Header';
 import useCompany from '../../hooks/useCompany';
 import S from './styled';
@@ -6,6 +10,12 @@ import S from './styled';
 const DetailsCompany = () => {
 
   const { companySelected } = useCompany();
+  const theme = useTheme();
+  const navigate = useNavigate()
+
+  const handleNavigateBack = () => {
+    navigate(-1);
+  }
   
   return (
     <S.Container>
@@ -20,6 +30,11 @@ const DetailsCompany = () => {
             <S.TextDescripton>{companySelected.description}</S.TextDescripton>
           </S.BoxDescriptioCompany>
         </S.BoxDetailsDescription>
+
+        <S.BoxButtonBack onClick={handleNavigateBack} >
+          <S.TextBack>Voltar</S.TextBack>
+          <RiArrowGoBackFill size={24} color={theme.colors.primary} />
+        </S.BoxButtonBack>
 
         <S.BoxLocalsCompany>
           <S.TextTitleLocal>LOCALIZAÇÕES DA EMPRESA</S.TextTitleLocal>
