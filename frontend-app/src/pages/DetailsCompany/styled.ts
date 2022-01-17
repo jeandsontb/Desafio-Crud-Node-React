@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
 interface ILocalsProps {
-  colorDefined: boolean
+  colorDefined?: boolean
 }
 
 interface IResponsiblesProps {
-  colorDefined: boolean;
+  colorDefined?: boolean;
+}
+
+interface IResponsiblesLocalProps {
+  openbox: boolean;
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -110,6 +114,21 @@ export default {
     color: ${({theme}) => theme.colors.primary};
     font-size: 18px;
   `,
+  ButtonOpenResponsible: styled.button`
+    background-color: transparent;
+    color: ${({theme}) => theme.colors.primary};
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  `,
+  BoxResponsiblesLocal: styled.div<IResponsiblesLocalProps>`
+    width: 100%;
+    height: ${({openbox}) => openbox ? 'auto' : 0};
+    overflow: hidden;
+  `,
+  TextName: styled.span``,
+  TextAddress: styled.span``,
   BoxResponsiblesCompany: styled.div`
     width: 95%;
     margin-left: 2.5%;

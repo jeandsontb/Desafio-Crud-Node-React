@@ -124,8 +124,10 @@ export const CompanyProvider: React.FC = ({children}) => {
     const { data } = await showOneCompanyMain(id);
 
     let companyLocal: ILocalList[] = [];
-    data.companyLocal.map((res: { name: string; address: string; }) => {
+    // eslint-disable-next-line array-callback-return
+    data.companyLocal.map((res: {id: string; name: string; address: string; }) => {
       const dataLocalOne = {
+        id: res.id,
         nameLocal: res.name,
         addressLocal: res.address
       }
@@ -133,6 +135,7 @@ export const CompanyProvider: React.FC = ({children}) => {
     })
 
     let companyResponsible: IResponsibleList[] = [];
+    // eslint-disable-next-line array-callback-return
     data.companyResponsible.map((res: { name: string; address: string; }) => {      
         const dataResponsibleOne = {
           nameResponsible: res.name,
@@ -142,6 +145,7 @@ export const CompanyProvider: React.FC = ({children}) => {
     });
 
     const dataOneCompanySelected: ICompanyShowOne = {
+      id: data.companyData.id,
       name: data.companyData.name,
       cnpj: data.companyData.cnpj,
       description: data.companyData.description,

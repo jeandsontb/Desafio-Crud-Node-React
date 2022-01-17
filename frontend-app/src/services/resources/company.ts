@@ -41,6 +41,11 @@ const showResponsibleCompany = async (id: string) => {
   return response;
 }
 
+const showResponsibleLocal = async (id: string) => {
+  const response = await api.get(`/responsible/show?localId=${id}`);
+  return response;
+}
+
 const deleteLocalCompany = async (id: string) => {
   const response = await api.delete(`/local/delete/${id}`);
   return response;
@@ -69,6 +74,7 @@ export {
   showOneCompanyMain,
   showLocalCompany,
   showResponsibleCompany,
+  showResponsibleLocal,
   deleteLocalCompany,
   createResponsibleLocalAndCompany,
   deleteResponsibleCompany 

@@ -4,7 +4,10 @@ import {
   DashboardBackground, 
   Content,
   BoxLeft,
-  BoxRight
+  BoxRight,
+  BoxDescriptionRight,
+  TextTitle,  
+  TextCnpj
 } from './styles';
 import Header from '../../components/Header'
 import { ListCompany } from '../../components/ListCompany';
@@ -45,13 +48,19 @@ const Dashboard = () => {
   return (
     <DashboardBackground>
       <Header />
-
+        
       <Content>
         <BoxLeft>
           <FormDashboard />
         </BoxLeft>
 
         <BoxRight>
+
+          <BoxDescriptionRight>
+            <TextTitle>EMPRESA</TextTitle>
+            <TextCnpj>CNPJ</TextCnpj>
+          </BoxDescriptionRight>
+
           {company.map((item, index) => {
 
             let verify = false;

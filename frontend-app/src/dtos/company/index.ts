@@ -34,10 +34,12 @@ export interface ICompanyUpdate {
 }
 
 export interface ICompanyShowOne {
+  id: string;
   name: string;
   cnpj: string;
   description: string;
   companyLocal: {
+    id: string;
     nameLocal: string;
     addressLocal: string;
   }[],
@@ -53,6 +55,7 @@ export interface IResponsibleList {
 }
 
 export interface ILocalList {
+  id: string;
   nameLocal: string;
   addressLocal: string;
 }
@@ -64,6 +67,11 @@ export interface ILocalCreate {
 }
 
 export interface IResponsibleCreate {
+  name: string;
+  address: string;
+}
+
+export interface IResponsibleListLocal {
   name: string;
   address: string;
 }
