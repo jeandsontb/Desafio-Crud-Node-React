@@ -77,7 +77,7 @@ export const CompanyProvider: React.FC = ({children}) => {
         (local: { address: string | undefined; }) => local.address === dataUpdate.localCompany
       );
       if(vefiryLocalCompany !== undefined) {
-        idLocalCompanyData = data[0].id;
+        idLocalCompanyData = vefiryLocalCompany.id;
       } else {
         const localData = {
           name: dataUpdate.name,
@@ -103,7 +103,7 @@ export const CompanyProvider: React.FC = ({children}) => {
       );
     }
      
-    //depois de verificar tudo faz o update da empresa no banco e na lista
+    // //depois de verificar tudo faz o update da empresa no banco e na lista
     if(dataUpdate.id) {
       const tempCompany = [...company];
       const newCompany = tempCompany.find((obj) => obj.id === dataUpdate.id);
