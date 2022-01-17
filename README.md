@@ -22,6 +22,10 @@ Projeto completo de um CRUD. No backend estou utilizando o Node.js no backend co
 
 Projeto em desenvolvimento, algumas funcionalidades e telas estão em desenvolvimento.
 
+## Link do vídeo do projeto funcionando
+
+[Projeto_Fullstack_Com_Node_E_React](https://www.loom.com/share/bce09dde63634551b462e73ac9bdbf9d) 
+
 ## 💡 Informações de como executar o projeto
 
   ## - Você pode clonar o repositório inteiro, onde já estão os dois projetos, backend e frontend.
